@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NurQadam140 — Подготовка к ЕНТ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ГЛАВНАЯ -->
+<div id="homeScreen">
+  <header>
+    <div class="logo">
+      <div class="logo-circle">N</div>
+      <span>NurQadam140</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Нұрлы қадам — 140-қа!</h1>
+    <p>Пройди пробный тест ЕНТ и узнай свой реальный балл</p>
+    <button class="btn-primary" onclick="startTest()">Начать тест →</button>
+  </section>
+
+  <section class="features">
+    <div class="card"><h3>📚 5 предметов</h3><p>Матем. грамотность, чтение, история РК и профильные</p></div>
+    <div class="card"><h3>⏱️ Таймер</h3><p>Реальный формат ЕНТ</p></div>
+    <div class="card"><h3>🎯 Баллы</h3><p>Мгновенный подсчёт до 140 баллов</p></div>
+  </section>
+
+  <footer>© 2026 NurQadam140</footer>
+</div>
+
+<!-- ТЕСТ -->
+<div id="testScreen" style="display:none;">
+  <header>
+    <div class="logo">
+      <div class="logo-circle">N</div>
+      <span>NurQadam140</span>
+    </div>
+    <div id="timer" class="timer">⏱️ 00:00</div>
+  </header>
+
+  <main class="test-container">
+    <div class="progress-bar">
+      <div id="progress" class="progress-fill"></div>
+    </div>
+    <p id="counter" class="counter">Вопрос 1 из 10</p>
+    <p id="subject" class="subject-label"></p>
+    <h2 id="questionText"></h2>
+    <div id="options" class="options"></div>
+    <div class="nav-buttons">
+      <button id="prevBtn" class="btn-secondary">← Назад</button>
+      <button id="nextBtn" class="btn-primary">Далее →</button>
+    </div>
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

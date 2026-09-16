@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Результат — NurQadam140</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-circle">N</div>
+    <span>NurQadam140</span>
+  </div>
+</header>
+
+<main class="result-container">
+  <h1>Твой результат 🎉</h1>
+
+  <div class="score-circle">
+    <div id="scoreBig">0</div>
+    <div class="score-label">из 140 баллов</div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value" id="percentVal">0%</div>
+      <div class="stat-label">Процент</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="correctVal">0</div>
+      <div class="stat-label">Правильных</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="wrongVal">0</div>
+      <div class="stat-label">Ошибок</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="timeVal">0:00</div>
+      <div class="stat-label">Время</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">📋 Разбор ошибок</h2>
+  <div id="mistakes" class="mistakes"></div>
+
+  <div class="action-buttons">
+    <a href="index.html" class="btn-primary">Пройти заново</a>
+  </div>
+</main>
+
+<script src="app.js"></script>
+<script>showResults();</script>
+</body>
+</html>
