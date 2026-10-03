@@ -245,10 +245,18 @@ function startTestWithProfile(profileKey) {
 
 // Профильные вопросы (пока заглушки — заполним на следующем шаге)
 function buildQuestionList(profileKey) {
-  const commonQuestions = questions; // 10 базовых вопросов
+  const commonQuestions = [...questions]; // 40 обязательных
   
-  // Пока возвращаем просто базовые — на следующем шаге добавим профильные
+  if (profileKey === 'physmath') {
+    return [...commonQuestions, ...physicsQuestions];
+  }
+  if (profileKey === 'chembio') {
+    return [...commonQuestions]; // Химию и Биологию добавим позже
+  }
+  if (profileKey === 'geomath') {
+    return [...commonQuestions]; // Географию добавим позже
+  }
+  
   return commonQuestions;
 }
-
 let activeQuestions = [];
