@@ -90,6 +90,49 @@ const physicsQuestions = [
   { subject: "Физика", text: "Импульс тела массой 4 кг при скорости 3 м/с равен:", options: ["7 кг·м/с", "12 кг·м/с", "1,3 кг·м/с", "0,75 кг·м/с"], correct: 1, explanation: "p = mv = 4 × 3 = 12 кг·м/с." },
   { subject: "Физика", text: "Закон сохранения импульса выполняется:", options: ["Всегда", "В замкнутых системах", "Только в вакууме", "Только на Земле"], correct: 1, explanation: "Только в замкнутых (закрытых) системах." }
 ];
+// ============ МАТЕМАТИКА (профиль) — 40 вопросов ============
+const mathQuestions = [
+  { subject: "Математика", text: "Решите уравнение: x² − 5x + 6 = 0", options: ["x = 1; x = 6", "x = 2; x = 3", "x = −2; x = −3", "x = 0; x = 5"], correct: 1, explanation: "D = 25 − 24 = 1; x₁ = 3; x₂ = 2." },
+  { subject: "Математика", text: "Найдите значение: log₂ 32", options: ["4", "5", "6", "8"], correct: 1, explanation: "2⁵ = 32, значит log₂ 32 = 5." },
+  { subject: "Математика", text: "Вычислите: sin 30° + cos 60°", options: ["0,5", "1", "1,5", "2"], correct: 1, explanation: "sin 30° = 0,5; cos 60° = 0,5; сумма = 1." },
+  { subject: "Математика", text: "Найдите производную функции f(x) = 3x² + 2x − 5", options: ["6x + 2", "3x + 2", "6x − 5", "6x² + 2"], correct: 0, explanation: "f'(x) = 6x + 2." },
+  { subject: "Математика", text: "Чему равен tg 45°?", options: ["0", "0,5", "1", "√3"], correct: 2, explanation: "tg 45° = 1." },
+  { subject: "Математика", text: "Сумма первых 10 членов арифметической прогрессии, где a₁=2, d=3:", options: ["155", "160", "165", "170"], correct: 0, explanation: "S₁₀ = (2a₁ + 9d)/2 × 10 = (4 + 27)/2 × 10 = 155." },
+  { subject: "Математика", text: "Найдите корень уравнения: 2ˣ = 16", options: ["2", "3", "4", "5"], correct: 2, explanation: "2⁴ = 16, значит x = 4." },
+  { subject: "Математика", text: "Площадь круга радиуса 5 см:", options: ["10π см²", "20π см²", "25π см²", "50π см²"], correct: 2, explanation: "S = πR² = π × 25 = 25π см²." },
+  { subject: "Математика", text: "Решите неравенство: 3x − 6 > 0", options: ["x < 2", "x > 2", "x < −2", "x > −2"], correct: 1, explanation: "3x > 6, x > 2." },
+  { subject: "Математика", text: "Найдите cos 0° + sin 90°", options: ["0", "1", "2", "√2"], correct: 2, explanation: "cos 0° = 1; sin 90° = 1; сумма = 2." },
+  { subject: "Математика", text: "Вычислите: 5! (факториал)", options: ["25", "60", "120", "720"], correct: 2, explanation: "5! = 5×4×3×2×1 = 120." },
+  { subject: "Математика", text: "Уравнение окружности с центром (2; −3) и радиусом 4:", options: ["(x−2)² + (y+3)² = 16", "(x+2)² + (y−3)² = 16", "(x−2)² + (y−3)² = 4", "(x+2)² + (y+3)² = 4"], correct: 0, explanation: "(x−2)² + (y+3)² = 16." },
+  { subject: "Математика", text: "Найдите: ∫ 2x dx", options: ["x² + C", "2x² + C", "x²/2 + C", "2x + C"], correct: 0, explanation: "∫2x dx = x² + C." },
+  { subject: "Математика", text: "Если a = 3, b = 4, чему равна гипотенуза прямоугольного треугольника?", options: ["5", "6", "7", "12"], correct: 0, explanation: "c = √(3² + 4²) = √25 = 5." },
+  { subject: "Математика", text: "Найдите значение: √144", options: ["10", "11", "12", "14"], correct: 2, explanation: "12² = 144." },
+  { subject: "Математика", text: "Сколько различных трёхзначных чисел можно составить из цифр 1, 2, 3 без повторений?", options: ["3", "6", "9", "27"], correct: 1, explanation: "P₃ = 3! = 6." },
+  { subject: "Математика", text: "Найдите область определения функции y = √(x − 3)", options: ["x > 3", "x ≥ 3", "x < 3", "x ≤ 3"], correct: 1, explanation: "x − 3 ≥ 0 → x ≥ 3." },
+  { subject: "Математика", text: "Решите: 2sin x = 1", options: ["x = π/6 + 2πn", "x = π/3 + 2πn", "x = π/2 + 2πn", "x = π + 2πn"], correct: 0, explanation: "sin x = 1/2 → x = π/6 + 2πn." },
+  { subject: "Математика", text: "Найдите площадь треугольника со сторонами 6, 8 и углом 90° между ними.", options: ["12", "24", "48", "14"], correct: 1, explanation: "S = ½ × 6 × 8 = 24." },
+  { subject: "Математика", text: "Решите: |x − 2| = 5", options: ["x = 7; x = −3", "x = 7; x = 3", "x = −7; x = 3", "x = 5; x = −5"], correct: 0, explanation: "x − 2 = 5 → x = 7; x − 2 = −5 → x = −3." },
+  { subject: "Математика", text: "Чему равен cos 180°?", options: ["0", "1", "−1", "0,5"], correct: 2, explanation: "cos 180° = −1." },
+  { subject: "Математика", text: "Упростите: (a + b)²", options: ["a² + b²", "a² + 2ab + b²", "a² − 2ab + b²", "2a + 2b"], correct: 1, explanation: "(a+b)² = a² + 2ab + b²." },
+  { subject: "Математика", text: "Логарифм: log₃ 81", options: ["3", "4", "5", "6"], correct: 1, explanation: "3⁴ = 81, log₃ 81 = 4." },
+  { subject: "Математика", text: "Периметр квадрата со стороной 7 см:", options: ["14 см", "21 см", "28 см", "49 см"], correct: 2, explanation: "P = 4a = 28 см." },
+  { subject: "Математика", text: "Найдите 30% от 200.", options: ["30", "60", "90", "120"], correct: 1, explanation: "200 × 0,3 = 60." },
+  { subject: "Математика", text: "Решите уравнение: x/3 + x/6 = 5", options: ["5", "10", "15", "30"], correct: 1, explanation: "2x/6 + x/6 = 3x/6 = x/2 = 5 → x = 10." },
+  { subject: "Математика", text: "Геометрическая прогрессия: b₁=2, q=3. Найдите b₄.", options: ["18", "27", "54", "81"], correct: 2, explanation: "b₄ = 2 × 3³ = 54." },
+  { subject: "Математика", text: "Чему равно: 2⁰ + 3⁰ + 5⁰?", options: ["0", "1", "3", "10"], correct: 2, explanation: "Любое число в степени 0 = 1. 1+1+1 = 3." },
+  { subject: "Математика", text: "Найдите x: logₓ 27 = 3", options: ["2", "3", "4", "9"], correct: 1, explanation: "x³ = 27 → x = 3." },
+  { subject: "Математика", text: "Площадь трапеции с основаниями 4 и 6, высотой 3:", options: ["15", "18", "20", "30"], correct: 0, explanation: "S = (a+b)/2 × h = 10/2 × 3 = 15." },
+  { subject: "Математика", text: "Найдите: cos²30° + sin²30°", options: ["0,5", "1", "1,5", "2"], correct: 1, explanation: "Основное тригонометрическое тождество = 1." },
+  { subject: "Математика", text: "Сколько корней у уравнения x² + 4 = 0?", options: ["0", "1", "2", "4"], correct: 0, explanation: "x² = −4 — нет действительных корней." },
+  { subject: "Математика", text: "Найдите значение выражения: 3⁴", options: ["12", "27", "64", "81"], correct: 3, explanation: "3⁴ = 81." },
+  { subject: "Математика", text: "Решите систему: x + y = 7, x − y = 1. Найдите y.", options: ["3", "4", "5", "6"], correct: 0, explanation: "Сложим: 2x = 8 → x = 4. y = 3." },
+  { subject: "Математика", text: "Чему равна сумма углов треугольника?", options: ["90°", "180°", "270°", "360°"], correct: 1, explanation: "Сумма углов треугольника = 180°." },
+  { subject: "Математика", text: "Найдите: 7² − 3²", options: ["16", "28", "40", "58"], correct: 2, explanation: "49 − 9 = 40." },
+  { subject: "Математика", text: "Диаметр окружности 10 см. Найдите радиус.", options: ["2,5 см", "5 см", "10 см", "20 см"], correct: 1, explanation: "R = d/2 = 5 см." },
+  { subject: "Математика", text: "Найдите: 0,5 × 0,4", options: ["0,02", "0,2", "2", "20"], correct: 1, explanation: "0,5 × 0,4 = 0,2." },
+  { subject: "Математика", text: "Объём куба с ребром 4 см:", options: ["16 см³", "32 см³", "64 см³", "128 см³"], correct: 2, explanation: "V = a³ = 64 см³." },
+  { subject: "Математика", text: "Найдите: arccos(1/2)", options: ["0°", "30°", "60°", "90°"], correct: 2, explanation: "cos 60° = 1/2, значит arccos(1/2) = 60°." }
+];
 // ============ ПЕРЕМЕННЫЕ ============
 let currentIndex = 0;
 let userAnswers = new Array(questions.length).fill(null);
@@ -248,7 +291,7 @@ function buildQuestionList(profileKey) {
   const commonQuestions = [...questions]; // 40 обязательных
   
   if (profileKey === 'physmath') {
-    return [...commonQuestions, ...physicsQuestions];
+    return [...commonQuestions, ...physicsQuestions, ...mathQuestions];
   }
   if (profileKey === 'chembio') {
     return [...commonQuestions]; // Химию и Биологию добавим позже
