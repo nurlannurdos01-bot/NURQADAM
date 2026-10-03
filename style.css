@@ -128,3 +128,59 @@ footer { text-align: center; padding: 30px; color: #666; margin-top: 40px; }
   .test-container { padding: 20px; margin: 15px; }
   #questionText { font-size: 18px; }
 }
+/* ПРОФИЛИ */
+.profile-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  text-align: center;
+}
+.profile-container h1 {
+  color: #0B3D91;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+.profile-subtitle {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+.profile-card {
+  background: white;
+  padding: 35px 25px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 3px solid transparent;
+}
+.profile-card:hover {
+  transform: translateY(-8px);
+  border-color: #FFC107;
+  box-shadow: 0 15px 35px rgba(11,61,145,0.15);
+}
+.profile-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+.profile-card h3 {
+  color: #0B3D91;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.profile-card p {
+  color: #666;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .profile-container h1 { font-size: 24px; }
+  .profile-card { padding: 25px 20px; }
+  .profile-icon { font-size: 40px; }
+}

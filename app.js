@@ -20,14 +20,6 @@ let seconds = 0;
 let timerInterval = null;
 
 // ============ СТАРТ ТЕСТА ============
-function startTest() {
-  document.getElementById('homeScreen').style.display = 'none';
-  document.getElementById('testScreen').style.display = 'block';
-  seconds = 0;
-  timerInterval = setInterval(updateTimer, 1000);
-  renderQuestion();
-}
-
 function updateTimer() {
   seconds++;
   const m = String(Math.floor(seconds / 60)).padStart(2, '0');
@@ -36,13 +28,13 @@ function updateTimer() {
 }
 
 // ============ РЕНДЕР ВОПРОСА ============
-function renderQuestion() {
-  const q = questions[currentIndex];
+ function renderQuestion() {
+  const q = activeQuestions[currentIndex];
   document.getElementById('questionText').textContent = q.text;
   document.getElementById('subject').textContent = q.subject;
-  document.getElementById('counter').textContent = `Вопрос ${currentIndex + 1} из ${questions.length}`;
+  document.getElementById('counter').textContent = `Вопрос ${currentIndex + 1} из ${activeQuestions.length}`;
 
-  const percent = ((currentIndex + 1) / questions.length) * 100;
+  const percent = ((currentIndex + 1) / activeQuestions.length) * 100;
   document.getElementById('progress').style.width = percent + '%';
 
   const optionsDiv = document.getElementById('options');
@@ -61,7 +53,7 @@ function renderQuestion() {
 
   document.getElementById('prevBtn').disabled = currentIndex === 0;
   document.getElementById('nextBtn').textContent =
-    currentIndex === questions.length - 1 ? 'Завершить ✓' : 'Далее →';
+    currentIndex === activeQuestions.length - 1 ? 'Завершить ✓' : 'Далее →';
 }
 
 // ============ НАВИГАЦИЯ ============
@@ -70,14 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const next = document.getElementById('nextBtn');
   if (prev) prev.onclick = () => { if (currentIndex > 0) { currentIndex--; renderQuestion(); } };
   if (next) next.onclick = () => {
-    if (currentIndex < questions.length - 1) { currentIndex++; renderQuestion(); }
+    if (currentIndex < activeQuestions.length - 1) { currentIndex++; renderQuestion(); }
     else finishTest();
-  };
+  }
 });
-
 function finishTest() {
   clearInterval(timerInterval);
-  const results = questions.map((q, i) => ({
+  const results = activeQuestions.map((q, i) => ({
     subject: q.subject, text: q.text,
     options: q.options, correct: q.correct,
     userAnswer: userAnswers[i],
@@ -88,7 +79,6 @@ function finishTest() {
   localStorage.setItem('nurqadam_time', seconds);
   window.location.href = 'result.html';
 }
-
 // ============ РЕЗУЛЬТАТЫ ============
 function showResults() {
   const results = JSON.parse(localStorage.getItem('nurqadam_results') || '[]');
@@ -136,3 +126,52 @@ function showResults() {
     mistakesDiv.appendChild(card);
   });
 }
+// ============ ВЫБОР ПРОФИЛЯ ============
+let selectedProfile = null;
+
+function showProfileScreen() {
+  document.getElementById('homeScreen').style.display = 'none';
+  document.getElementById('profileScreen').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function backToHome() {
+  document.getElementById('profileScreen').style.display = 'none';
+  document.getElementById('homeScreen').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function selectProfile(profileKey) {
+  selectedProfile = profileKey;
+  localStorage.setItem('nurqadam_profile', profileKey);
+  document.getElementById('profileScreen').style.display = 'none';
+  document.getElementById('testScreen').style.display = 'block';
+  startTestWithProfile(profileKey);
+  window.scrollTo(0, 0);
+}
+
+function startTestWithProfile(profileKey) {
+  // Формируем список вопросов по профилю
+  const profileQuestions = buildQuestionList(profileKey);
+  
+  // Сброс переменных
+  currentIndex = 0;
+  userAnswers = new Array(profileQuestions.length).fill(null);
+  activeQuestions = profileQuestions;
+  seconds = 0;
+  
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(updateTimer, 1000);
+  
+  renderQuestion();
+}
+
+// Профильные вопросы (пока заглушки — заполним на следующем шаге)
+function buildQuestionList(profileKey) {
+  const commonQuestions = questions; // 10 базовых вопросов
+  
+  // Пока возвращаем просто базовые — на следующем шаге добавим профильные
+  return commonQuestions;
+}
+
+let activeQuestions = [];

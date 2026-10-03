@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<!-- ГЛАВНАЯ -->
+<!-- ЭКРАН 1: ГЛАВНАЯ -->
 <div id="homeScreen">
   <header>
     <div class="logo">
@@ -20,19 +20,58 @@
   <section class="hero">
     <h1>Нұрлы қадам — 140-қа!</h1>
     <p>Пройди пробный тест ЕНТ и узнай свой реальный балл</p>
-    <button class="btn-primary" onclick="startTest()">Начать тест →</button>
+    <button class="btn-primary" onclick="showProfileScreen()">Начать тест →</button>
   </section>
 
   <section class="features">
-    <div class="card"><h3>📚 5 предметов</h3><p>Матем. грамотность, чтение, история РК и профильные</p></div>
-    <div class="card"><h3>⏱️ Таймер</h3><p>Реальный формат ЕНТ</p></div>
-    <div class="card"><h3>🎯 Баллы</h3><p>Мгновенный подсчёт до 140 баллов</p></div>
+    <div class="card"><h3>📚 5 предметов</h3><p>Матем. грамотность, чтение, история РК и 2 профильных</p></div>
+    <div class="card"><h3>⏱️ 120 вопросов</h3><p>Реальный формат ЕНТ с таймером</p></div>
+    <div class="card"><h3>🎯 До 140 баллов</h3><p>Мгновенный подсчёт результата</p></div>
   </section>
+
+  <footer>© 2026 NurQadam140 · Школа-лицей №53, Караганда</footer>
+</div>
+
+<!-- ЭКРАН 2: ВЫБОР ПРОФИЛЯ -->
+<div id="profileScreen" style="display:none;">
+  <header>
+    <div class="logo">
+      <div class="logo-circle">N</div>
+      <span>NurQadam140</span>
+    </div>
+  </header>
+
+  <main class="profile-container">
+    <h1>Выбери свой профиль</h1>
+    <p class="profile-subtitle">От этого зависит, какие профильные предметы будут в тесте</p>
+
+    <div class="profile-grid">
+      <div class="profile-card" onclick="selectProfile('physmath')">
+        <div class="profile-icon">⚛️🧮</div>
+        <h3>Физика + Математика</h3>
+        <p>Для будущих инженеров и IT-специалистов</p>
+      </div>
+
+      <div class="profile-card" onclick="selectProfile('chembio')">
+        <div class="profile-icon">🧪🧬</div>
+        <h3>Химия + Биология</h3>
+        <p>Для будущих врачей и биологов</p>
+      </div>
+
+      <div class="profile-card" onclick="selectProfile('geomath')">
+        <div class="profile-icon">🌍🧮</div>
+        <h3>География + Математика</h3>
+        <p>Для будущих географов и экономистов</p>
+      </div>
+    </div>
+
+    <button class="btn-secondary" onclick="backToHome()">← Назад</button>
+  </main>
 
   <footer>© 2026 NurQadam140</footer>
 </div>
 
-<!-- ТЕСТ -->
+<!-- ЭКРАН 3: ТЕСТ -->
 <div id="testScreen" style="display:none;">
   <header>
     <div class="logo">
@@ -46,7 +85,7 @@
     <div class="progress-bar">
       <div id="progress" class="progress-fill"></div>
     </div>
-    <p id="counter" class="counter">Вопрос 1 из 10</p>
+    <p id="counter" class="counter">Вопрос 1 из 120</p>
     <p id="subject" class="subject-label"></p>
     <h2 id="questionText"></h2>
     <div id="options" class="options"></div>
