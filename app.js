@@ -512,3 +512,4 @@ ${mistakesText}
     btn.textContent = '🤖 Попробовать снова';
     btn.disabled = false;
 }
+}
