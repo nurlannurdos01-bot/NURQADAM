@@ -184,3 +184,49 @@ footer { text-align: center; padding: 30px; color: #666; margin-top: 40px; }
   .profile-card { padding: 25px 20px; }
   .profile-icon { font-size: 40px; }
 }
+/* ИИ-РАЗБОР */
+.ai-block {
+  margin-top: 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 100%);
+  border-radius: 20px;
+  border: 2px solid #e0e6ff;
+}
+.ai-description {
+  color: #555;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+.ai-btn {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+.ai-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.ai-result {
+  margin-top: 20px;
+  padding: 25px;
+  background: white;
+  border-radius: 15px;
+  border-left: 5px solid #FFC107;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+.ai-result .loading {
+  text-align: center;
+  color: #0B3D91;
+  font-weight: bold;
+  padding: 20px;
+}
+.ai-content {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #1A1A1A;
+}
+
+@media (max-width: 600px) {
+  .ai-block { padding: 20px 15px; }
+  .ai-result { padding: 18px; }
+}

@@ -431,3 +431,82 @@ function buildQuestionList(profileKey) {
   return commonQuestions;
 }
 let activeQuestions = [];
+// ============ ИИ-РАЗБОР ОШИБОК ============
+const GEMINI_API_KEY = "AQ.Ab8RN6I6URbZaZyf92tN9hrUxkxI43f9NNguex48v7SYMwMBoA";
+const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=";
+
+async function explainWithAI() {
+  const btn = document.getElementById('aiBtn');
+  const resultDiv = document.getElementById('aiResult');
+  
+  const results = JSON.parse(localStorage.getItem('nurqadam_results') || '[]');
+  const wrong = results.filter(r => !r.isCorrect);
+  
+  if (wrong.length === 0) {
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = '<p style="text-align:center;font-size:18px;">🎉 У тебя нет ошибок — разбирать нечего!</p>';
+    return;
+  }
+  
+  btn.disabled = true;
+  btn.textContent = '⏳ ИИ анализирует...';
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML = '<p class="loading">🤖 Нейросеть разбирает твои ошибки. Подожди 10-20 секунд...</p>';
+  
+  const mistakesText = wrong.map((r, i) => {
+    const userAnswer = r.userAnswer !== null ? r.options[r.userAnswer] : 'Не отвечено';
+    return `Ошибка ${i + 1}:
+Предмет: ${r.subject}
+Вопрос: ${r.text}
+Правильный ответ: ${r.options[r.correct]}
+Ответ ученика: ${userAnswer}`;
+  }).join('\n\n');
+  
+  const prompt = `Ты — опытный репетитор по подготовке к ЕНТ (Единое национальное тестирование) в Казахстане.
+Ученик 11 класса ошибся в следующих вопросах:
+
+${mistakesText}
+
+Для КАЖДОЙ ошибки объясни простыми словами:
+1. Почему его ответ неверный
+2. Почему правильный ответ верный
+3. Дай короткое правило или формулу для запоминания
+
+Отвечай на русском языке. Пиши кратко и понятно для школьника. Разделяй ошибки эмодзи 🔹 и используй переносы строк. Не используй символы ** и # (это markdown).`;
+  
+  try {
+    const response = await fetch(GEMINI_URL + GEMINI_API_KEY, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }]
+      })
+    });
+    
+    if (!response.ok) {
+      const errData = await response.json().catch(() => ({}));
+      const errMsg = errData.error?.message || `HTTP ${response.status}`;
+      throw new Error(errMsg);
+    }
+    
+    const data = await response.json();
+    
+    if (!data.candidates || !data.candidates[0]?.content?.parts[0]?.text) {
+      throw new Error('Пустой ответ от ИИ');
+    }
+    
+    const aiText = data.candidates[0].content.parts[0].text;
+    
+    resultDiv.innerHTML = '<div class="ai-content">' + 
+      aiText.replace(/\*\*/g, '').replace(/\n/g, '<br>') + 
+      '</div>';
+    btn.textContent = '✅ Готово!';
+    btn.disabled = false;
+  } catch (error) {
+    resultDiv.innerHTML = 
+      '<p style="color:#e74c3c;text-align:center;">❌ Ошибка: ' + error.message + 
+      '<br><br>Проверь:<br>1) API-ключ вставлен правильно<br>2) Есть интернет<br>3) Ключ активен</p>';
+    btn.textContent = '🤖 Попробовать снова';
+    btn.disabled = false;
+  }
+}
