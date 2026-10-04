@@ -432,8 +432,8 @@ function buildQuestionList(profileKey) {
 }
 let activeQuestions = [];
 // ============ ИИ-РАЗБОР ОШИБОК ============
-const GEMINI_API_KEY = "AQ.Ab8RN6I6URbZaZyf92tN9hrUxkxI43f9NNguex48v7SYMwMBoA";
-const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=";
+const GEMINI_API_KEY = "AQ.Ab8RN6ITVkksJA17mkZPtGFJUeRutwEIOUSrK232LFP5wGddQA";
+const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 
 async function explainWithAI() {
   const btn = document.getElementById('aiBtn');
@@ -474,13 +474,16 @@ ${mistakesText}
 
 Отвечай на русском языке. Пиши кратко и понятно для школьника. Разделяй ошибки эмодзи 🔹 и используй переносы строк. Не используй символы ** и # (это markdown).`;
   
-  try {
-    const response = await fetch(GEMINI_URL + GEMINI_API_KEY, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }]
-      })
+ try {
+    const response = await fetch(GEMINI_URL, {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+            'x-goog-api-key': GEMINI_API_KEY // <-- Ключ теперь здесь
+        },
+        body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }]
+        })
     });
     
     if (!response.ok) {
@@ -502,11 +505,10 @@ ${mistakesText}
       '</div>';
     btn.textContent = '✅ Готово!';
     btn.disabled = false;
-  } catch (error) {
+} catch (error) {
     resultDiv.innerHTML = 
       '<p style="color:#e74c3c;text-align:center;">❌ Ошибка: ' + error.message + 
       '<br><br>Проверь:<br>1) API-ключ вставлен правильно<br>2) Есть интернет<br>3) Ключ активен</p>';
     btn.textContent = '🤖 Попробовать снова';
     btn.disabled = false;
-  }
 }
