@@ -472,7 +472,7 @@ ${mistakesText}
 Отвечай на русском языке. Пиши кратко и понятно для школьника. Разделяй ошибки эмодзи 🔹 и используй переносы строк. Не используй символы ** и # (это markdown).`;
   
   try {
-    const response = await fetch('https://nurqadam-ai.nurlannurdos.workers.dev', {
+    const response = await fetch('https://nurqadam-ai.nurlannurdos01.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
